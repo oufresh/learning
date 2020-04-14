@@ -1,0 +1,27 @@
+### Hello
+GET http://localhost:3002/hello
+
+### Create
+POST http://localhost:3002/order/create
+content-type: application/json
+
+{
+    "elements": [
+        {
+            "price": 100,
+            "id": "cane",
+            "title": "cane"
+        }
+    ]
+}
+
+### Confirm
+PUT http://localhost:3002/order/confirm
+content-type: application/json
+
+{
+    "orderId": "3fcc1380-78c9-11ea-bd64-234e14bed73e"
+}
+
+### Get
+GET http://localhost:3002/order/get?uuid=3fcc1380-78c9-11ea-bd64-234e14bed73e

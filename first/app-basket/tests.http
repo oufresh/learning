@@ -1,0 +1,29 @@
+### Hello
+GET http://localhost:3003/hello
+
+### Create basket
+POST http://localhost:3003/basket/create
+
+### Add a book
+PUT http://localhost:3003/basket/add
+content-type: application/json
+
+{
+    "basketId": "602377c0-7916-11ea-8693-d33309b22fb1",
+    "book": {
+        "price": 100,
+        "id": "cane",
+        "title": "cane"
+    }
+}
+
+### Get bsket content
+GET http://localhost:3003/basket/get?basketId=602377c0-7916-11ea-8693-d33309b22fb1
+
+### Buy
+POST http://localhost:3003/basket/buy
+content-type: application/json
+
+{
+    "basketId": "602377c0-7916-11ea-8693-d33309b22fb1"
+}

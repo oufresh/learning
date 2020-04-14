@@ -1,0 +1,10 @@
+{
+    "port": 3003,
+    "buy": {
+        "url": "http://localhost:3001/api/pay"
+    },
+    "order": {
+        "createUrl": "http://localhost:3002/order/create",
+        "confirmUrl": "http://localhost:3002/order/confirm"
+    }
+}

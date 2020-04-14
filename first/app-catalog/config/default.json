@@ -1,0 +1,6 @@
+{
+    "port": 3005,
+    "basket": {
+        "url": "http://localhost:3003/basket/add"
+    }
+}

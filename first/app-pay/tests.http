@@ -1,0 +1,8 @@
+### Pay
+POST http://localhost:3001/api/pay
+content-type: application/json
+
+{
+    "orderId": "order",
+    "price": 100
+}
