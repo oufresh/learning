@@ -1,0 +1,18 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.3.1",
+    "parcel": "^1.12.4"
+  },
+  "dependencies": {
+    "@babel/core": "^7.10.3",
+    "systemjs": "^6.3.2"
+  }
+}
