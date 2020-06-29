@@ -3,21 +3,27 @@ class AppContainer extends HTMLElement {
       super();
       const style = document.createElement('style');
       style.type = 'text/css';
-      style.innerHTML = `.appLayout { 
+      style.innerHTML = `.appContainer { 
         background-color: #FFF;
-        display: flex;
-        flex-direction: column;
+        display: block;
         position: absolute;
         top: 0px;
         left: 0px;
-        height: 100vh;
-        width: 100vw;
+        bottom: 0px;
+        right: 0px;
       }`;
       document.getElementsByTagName('head')[0].appendChild(style);
-      this.className = 'appLayout';
+      this.className = 'appContainer';
+      this.innerHTML = '<app-loader show="true"/>';
     }
     connectedCallback() {
-      //loading 
+      //loading start of micro app
+      setTimeout(() => {
+        this.innerHTML = 'LOADED';
+      }, 5000);
+    }
+    disconnectedCallback() {
+
     }
   }
-  window.customElements.define("app-container", AppContainer);
+window.customElements.define("app-container", AppContainer);
