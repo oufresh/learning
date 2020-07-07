@@ -23,6 +23,7 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
+    port: 3001,
     contentBase: "./dist", //where contents are served from
   },
   devtool: "inline-source-map",

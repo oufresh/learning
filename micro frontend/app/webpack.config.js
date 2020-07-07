@@ -22,9 +22,21 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
+    port: 3000,
     contentBase: "./dist", //where contents are served from,
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/micro': { 
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        pathRewrite: {
+          '/micro': ''
+        }/*,
+
+        bypass: function(req, res, proxyOptions) {
+          console.log(req);
+          return '/manifest.json';
+        }*/
+      }
     }
   },
   devtool: "inline-source-map",
