@@ -1,4 +1,3 @@
-//import Systemjs from "systemjs";
 
 class AppContainer extends HTMLElement {
     constructor() {
@@ -20,10 +19,7 @@ class AppContainer extends HTMLElement {
     }
     connectedCallback() {
       fetch("/micro/manifest.json").then(r => r.json()).then(m => console.log(m)).catch(e => console.error(e));
-      //loading start of micro app
-      /*Systemjs.import("/micro/bundle.js").then(() => {
-        console.log("LOADED manifest");
-      }).catch(e => console.error(e));*/
+
       setTimeout(() => {
         this.innerHTML = 'LOADED';
       }, 5000);

@@ -23,7 +23,5 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-manifest-plugin": "^2.2.0"
   },
-  "dependencies": {
-    "systemjs": "^6.3.3"
-  }
+  "dependencies": {}
 }
