@@ -9,7 +9,7 @@ export function registerElement(name, src) {
             script.onload = () => {
                 resolve();
             }
-            script.onerrorv = e => {
+            script.onerror = e => {
                 reject(e);
             }
             document.body.appendChild(script);
