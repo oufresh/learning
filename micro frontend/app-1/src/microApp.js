@@ -125,3 +125,4 @@ class EditableList extends HTMLElement {
 
   // let the browser know about the custom element
   customElements.define('editable-list', EditableList);
+  console.log("element editable-list registered");

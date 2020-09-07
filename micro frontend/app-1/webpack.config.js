@@ -34,7 +34,7 @@ module.exports = {
     }),
     new ManifestPlugin({
       seed: {
-        short_name: "App 1",
+        short_name: "App1",
         name: "Microfrontend App 1",
         icons: [],
         start_url: ".",
@@ -46,7 +46,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     //new CopyWebpackPlugin({ patterns: [{ from: "static", to: "." }] }),
     new webpack.DefinePlugin({
-      STANDALONE: true
+      STANDALONE: false
     })
   ],
 };
