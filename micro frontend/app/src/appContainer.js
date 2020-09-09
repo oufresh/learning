@@ -1,20 +1,26 @@
 import { registerElement } from "./utils";
 
+const STYLE_NAME = "app-container-style";
+
 class AppContainer extends HTMLElement {
   constructor() {
     super();
-    const style = document.createElement("style");
-    style.type = "text/css";
-    style.innerHTML = `.appContainer { 
-        background-color: #FFF;
-        display: block;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        bottom: 0px;
-        right: 0px;
-      }`;
-    document.getElementsByTagName("head")[0].appendChild(style);
+    if(!document.getElementById(STYLE_NAME)) {
+      const style = document.createElement("style");
+      style.type = "text/css";
+      style.id = STYLE_NAME;
+      style.innerHTML = `.appContainer { 
+          background-color: #FFF;
+          display: block;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          bottom: 0px;
+          right: 0px;
+        }`;
+      document.getElementsByTagName("head")[0].appendChild(style);
+    }
+    
     this.className = "appContainer";
     this.innerHTML = '<app-loader show="true"/>';
   }
