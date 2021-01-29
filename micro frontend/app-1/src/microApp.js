@@ -77,6 +77,7 @@ class EditableList extends HTMLElement {
         this.handleRemoveItemListeners([button]);
 
         textInput.value = '';
+        window.postMessage({action: "add", value: textInput.value, from: "editable-list"});
       }
     }
 
@@ -120,6 +121,12 @@ class EditableList extends HTMLElement {
 
     removeListItem(e) {
       e.target.parentNode.remove();
+      console.log(e.target.parentNode.textContent);
+      window.postMessage({action: "remove", value: ""}, "*");
+
+    }
+    disconnectedCallback() {
+      console.log("bye bye micro app");
     }
   }
 
