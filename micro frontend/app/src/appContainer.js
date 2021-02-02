@@ -24,14 +24,27 @@ class AppContainer extends HTMLElement {
     this.className = "appContainer";
     this.innerHTML = '<app-loader show="true"/>';
   }
+
+  get app() {
+    return this.getAttribute("label");
+  }
+  set app(value) {
+    if (value !== undefined) this.setAttribute("app", value);
+  }
+
+  static get observedAttributes() {
+    return ["app"];
+  }
+
   connectedCallback() {
-    fetch("/micro/manifest.json")
+    console.log("Load " + "/micro/"+this.getAttribute("app")+"/manifest.json")
+    fetch("/micro/"+this.getAttribute("app")+"/manifest.json")
       .then((r) => r.json())
       .then((m) => {
         console.log(m);
-        registerElement(m.short_name, "/micro/" + m["main.js"])
+        registerElement(m.short_name, "/micro/"+this.getAttribute("app") + m["main.js"])
           .then(() => {
-            this.innerHTML =`<editable-list />`;
+            this.innerHTML = "<"+this.getAttribute("app")+">";
           })
           .catch((e) => {
             console.error(e);

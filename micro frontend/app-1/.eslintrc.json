@@ -13,7 +13,7 @@
     "overrides": [
         {
             "files": ["src/*"],
-            "excludedFiles": "*webapck.config.json"
+            "excludedFiles": "*webapack.config.js"
         }
       ]
 }

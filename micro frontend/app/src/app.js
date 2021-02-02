@@ -26,7 +26,7 @@ class App extends HTMLElement {
     }
 
     connectedCallback() {
-        this.innerHTML = `<app-layout><div><h1>Hello Vanilla!</h1></div><app-area><app-container /></app-area><app-area><app-container /></app-area></app-layout>`;
+        this.innerHTML = `<app-layout><div><h1>Hello Vanilla!</h1></div><app-area><app-container app="editable-list" /></app-area><app-area><app-container app="editable-list"/></app-area></app-layout>`;
         //this.querySelector("button").addEventListener("click", this.onButtonClick);
         //this.loader = this.querySelector("app-loader");
         //this.render();

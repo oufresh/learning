@@ -25,11 +25,11 @@ module.exports = {
     port: 3000,
     contentBase: "./dist", //where contents are served from,
     proxy: {
-      '/micro': { 
+      '/micro/editable-list': { 
         target: 'http://localhost:3001',
         changeOrigin: true,
         pathRewrite: {
-          '/micro': ''
+          '/micro/editable-list': ''
         }/*,
 
         bypass: function(req, res, proxyOptions) {
