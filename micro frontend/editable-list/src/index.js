@@ -1,7 +1,6 @@
 /* global STANDALONE */
 
-import "./microApp";
+import "./editable-list";
 
-console.log(STANDALONE);
 if(STANDALONE === true)
     document.getElementById("root").innerHTML = `<editable-list />`;

@@ -8,7 +8,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = env => {
   return {
     
-  
     entry: "./src/index.js",
     output: {
       filename: 'bundle.js',
@@ -35,8 +34,8 @@ module.exports = env => {
       }),
       new WebpackManifestPlugin({
         seed: {
-          short_name: "App1",
-          name: "Microfrontend App 1",
+          short_name: "",
+          name: "editable-list",
           icons: [],
           start_url: ".",
           display: "standalone",

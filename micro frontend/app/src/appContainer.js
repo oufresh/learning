@@ -37,12 +37,12 @@ class AppContainer extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log("Load " + "/micro/"+this.getAttribute("app")+"/manifest.json")
-    fetch("/micro/"+this.getAttribute("app")+"/manifest.json")
+    console.log("Load " + "/"+this.getAttribute("app")+"/manifest.json")
+    fetch("/"+this.getAttribute("app")+"/manifest.json")
       .then((r) => r.json())
       .then((m) => {
         console.log(m);
-        registerElement(m.short_name, "/micro/"+this.getAttribute("app") + m["main.js"])
+        registerElement(m.short_name, "/"+this.getAttribute("app") + m["main.js"])
           .then(() => {
             this.innerHTML = "<"+this.getAttribute("app")+">";
           })

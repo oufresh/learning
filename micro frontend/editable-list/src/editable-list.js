@@ -57,7 +57,6 @@ class EditableList extends HTMLElement {
       // appending the container to the shadow DOM
       shadow.appendChild(editableListContainer);
     }
-
     // add items to the list
     addListItem(/*e*/) {
       const textInput = this.shadowRoot.querySelector('.add-new-list-item-input');
@@ -73,16 +72,16 @@ class EditableList extends HTMLElement {
 
         this.itemList.appendChild(li);
         this.itemList.children[childrenLength].appendChild(button);
-
+        window.postMessage({action: "add", value: textInput.value, from: "editable-list"});
         this.handleRemoveItemListeners([button]);
 
         textInput.value = '';
-        window.postMessage({action: "add", value: textInput.value, from: "editable-list"});
       }
     }
 
     // fires after the element has been attached to the DOM
     connectedCallback() {
+      
       const removeElementButtons = [...this.shadowRoot.querySelectorAll('.editable-list-remove-item')];
       const addElementButton = this.shadowRoot.querySelector('.editable-list-add-item');
 
@@ -90,6 +89,8 @@ class EditableList extends HTMLElement {
 
       this.handleRemoveItemListeners(removeElementButtons);
       addElementButton.addEventListener('click', this.addListItem, false);
+
+      //window.addEventListener("message", this.logMessage, false);
     }
 
     // gathering data from element attributes
@@ -121,8 +122,8 @@ class EditableList extends HTMLElement {
 
     removeListItem(e) {
       e.target.parentNode.remove();
-      console.log(e.target.parentNode.textContent);
-      window.postMessage({action: "remove", value: ""}, "*");
+      console.log(e.target.parentNode.textContent.slice(0, -1));
+      window.postMessage({action: "remove", value: e.target.parentNode.textContent.slice(0, -1), from: "editable-list"}, "*");
 
     }
     disconnectedCallback() {

@@ -1,51 +1,53 @@
 /* global require, __dirname, module */
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ManifestPlugin = require("webpack-manifest-plugin");
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-const p = path.resolve(__dirname, "dist");
+module.exports = (/*env*/) => {
+  return {
 
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-    ],
-  },
-  entry: "./src/index.js",
-  output: {
-    path: p,
-    filename: "bundle.js",
-  },
-  devServer: {
-    port: 3000,
-    contentBase: "./dist", //where contents are served from,
-    proxy: {
-      '/micro/editable-list': { 
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        pathRewrite: {
-          '/micro/editable-list': ''
-        }/*,
-
-        bypass: function(req, res, proxyOptions) {
-          console.log(req);
-          return '/manifest.json';
-        }*/
+    entry: "./src/index.js",
+    output: {
+      filename: 'bundle.js',
+      path: __dirname + '/dist',
+      publicPath: ""
+    },
+    module: {
+        rules: [
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
+        },
+      ],
+    },
+    devServer: {
+      port: 3000,
+      contentBase: "./dist", //where contents are served from,
+      proxy: {
+        '/editable-list': { 
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+          pathRewrite: {
+            '/editable-list': ''
+          }
+        }, 
+        '/basket-list': { 
+          target: 'http://localhost:3002',
+          changeOrigin: true,
+          pathRewrite: {
+            '/basket-list': ''
+          }
+        }
       }
-    }
-  },
+      },
   devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html", // name of html file to be created
       template: "./src/index.html", // source from which html file would be created
     }),
-    new ManifestPlugin({
+    new WebpackManifestPlugin({
       seed: {
         short_name: "App",
         name: "Microfrontend App Sample",
@@ -73,6 +75,8 @@ module.exports = {
       },
     }),
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({ patterns: [{ from: "static", to: "." }] }),
-  ],
+    new CopyWebpackPlugin({ patterns: [{ from: "static", to: "." }] })
+  ]
+
 };
+}
