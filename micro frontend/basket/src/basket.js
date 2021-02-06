@@ -1,3 +1,5 @@
+import style from "./basket.css";
+
 class BasketList extends HTMLElement {
     constructor() {
       // establish prototype chain
@@ -9,8 +11,11 @@ class BasketList extends HTMLElement {
 
       // creating a container for the editable-list component
       const basketContainer = document.createElement('div');
+      basketContainer.id = "basket-container";
       basketContainer.className = "basket-container";
-
+      const styleContainer = document.createElement('style');
+      styleContainer.appendChild(document.createTextNode(style));
+      shadow.appendChild(styleContainer);
       // get attribute values from getters
       //const title = this.title;
       //const addItemText = this.addItemText;
@@ -18,19 +23,6 @@ class BasketList extends HTMLElement {
 
       // creating the inner HTML of the editable list element
       basketContainer.innerHTML = `
-        <style>
-        .basket-container {
-          width: 100%;
-          text-align: center;
-        }
-        .item-list {
-          list-style: none;
-        }
-          ul {
-            border: 1px solid gray;
-          }
-          li {}
-        </style>
         <div>
         <h3>Basket</h3>
         <ul class="item-list">

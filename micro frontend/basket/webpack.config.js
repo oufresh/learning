@@ -3,8 +3,22 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-//const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
+/**
+ * 
+ * document.querySelector("basket-list").shadowRoot.firstElementChild
+ */
+/*
+const customStyleLoader = {
+  loader: 'style-loader',
+  options: {
+    insert: function (linkTag) {
+      const parent = document.querySelector('#root').shadowRoot
+      parent.appendChild(linkTag)
+    },
+  },
+}*/
 module.exports = env => {
   return {
     
@@ -19,9 +33,17 @@ module.exports = env => {
       rules: [
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
+          use: ["raw-loader"]
         },
       ]
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new CssMinimizerPlugin({
+          test: /\.css$/i,
+        }),
+      ],
     },
     devServer: {
       port: 3002,

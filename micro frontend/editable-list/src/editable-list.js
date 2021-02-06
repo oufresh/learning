@@ -73,6 +73,8 @@ class EditableList extends HTMLElement {
         this.itemList.appendChild(li);
         this.itemList.children[childrenLength].appendChild(button);
         window.postMessage({action: "add", value: textInput.value, from: "editable-list"});
+        debugger;
+        window.bc.postMessage(textInput.value);
         this.handleRemoveItemListeners([button]);
 
         textInput.value = '';
