@@ -1,3 +1,6 @@
+
+import style from "./editable-list.css";
+
 class EditableList extends HTMLElement {
     constructor() {
       // establish prototype chain
@@ -6,7 +9,9 @@ class EditableList extends HTMLElement {
       // attaches shadow tree and returns shadow root reference
       // https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow
       const shadow = this.attachShadow({ mode: 'open' });
-
+      const styleContainer = document.createElement('style');
+      styleContainer.appendChild(document.createTextNode(style));
+      shadow.appendChild(styleContainer);
       // creating a container for the editable-list component
       const editableListContainer = document.createElement('div');
 
@@ -20,20 +25,6 @@ class EditableList extends HTMLElement {
 
       // creating the inner HTML of the editable list element
       editableListContainer.innerHTML = `
-        <style>
-          li, div > div {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          }
-          .icon {
-            background-color: #fff;
-            border: none;
-            cursor: pointer;
-            float: right;
-            font-size: 1.8rem;
-          }
-        </style>
         <h3>${title}</h3>
         <ul class="item-list">
           ${listItems.map(item => `
@@ -72,9 +63,7 @@ class EditableList extends HTMLElement {
 
         this.itemList.appendChild(li);
         this.itemList.children[childrenLength].appendChild(button);
-        window.postMessage({action: "add", value: textInput.value, from: "editable-list"});
-        debugger;
-        window.bc.postMessage(textInput.value);
+        window.channel.postMessage({action: "add", value: textInput.value});
         this.handleRemoveItemListeners([button]);
 
         textInput.value = '';
@@ -124,8 +113,7 @@ class EditableList extends HTMLElement {
 
     removeListItem(e) {
       e.target.parentNode.remove();
-      console.log(e.target.parentNode.textContent.slice(0, -1));
-      window.postMessage({action: "remove", value: e.target.parentNode.textContent.slice(0, -1), from: "editable-list"}, "*");
+      window.channel.postMessage({action: "remove", value: e.target.parentNode.textContent.slice(0, -1)});
 
     }
     disconnectedCallback() {

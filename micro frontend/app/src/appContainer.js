@@ -42,9 +42,9 @@ class AppContainer extends HTMLElement {
       .then((r) => r.json())
       .then((m) => {
         console.log(m);
-        registerElement(m.short_name, "/"+this.getAttribute("app") + m["main.js"])
+        registerElement(m.short_name, "/"+m["name"] + m["main.js"])
           .then(() => {
-            this.innerHTML = "<"+this.getAttribute("app")+">";
+            this.innerHTML = "<"+m["name"]+">";
           })
           .catch((e) => {
             console.error(e);

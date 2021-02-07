@@ -1,16 +1,25 @@
-export class AllInclusiveBroadcaster {  
-    constructor(listener, channelName) {
+export default class AllInclusiveBroadcaster {
+  constructor(channelName) {
     if (!channelName) channelName = "appChannel";
     this.broadcaster = new BroadcastChannel(channelName);
     this.messageReceiver = new BroadcastChannel(channelName);
+    this.listners = [];
 
     this.messageReceiver.onmessage = (event) => {
-        listener(event.data);
-    }
-    }
+      this.listners.forEach((l) => {
+        l(event.data);
+      });
+    };
+    this.postmessage = this.postMessage.bind(this);
+    this.addListener = this.addListener.bind(this);
+  }
 
-  postmessage(data) {
+  postMessage(data){
     this.broadcaster.postMessage(data);
+  }
+
+  addListener(f) {
+    this.listners.push(f);
   }
 }
 

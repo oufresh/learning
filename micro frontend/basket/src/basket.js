@@ -41,14 +41,14 @@ class BasketList extends HTMLElement {
 
     // add items to the list
     manageListItem(m) {
-      if(m.data != undefined && typeof m.data === "object" && m.data.from === "editable-list") {
-        //console.log(m.data);
-        if (m.data.action === "add") {
-            this.items.push(m.data.value);
+      if(m != undefined && typeof m === "object" /*&& m.data.from === "editable-list"*/) {
+        console.log(m);
+        if (m.action === "add") {
+            this.items.push(m.value);
           }
-          else if (m.data.action === "remove") {
+          else if (m.action === "remove") {
             this.items = this.items.filter((v) => {
-              return v != m.data.value;
+              return v != m.value;
             });
           }
       }
@@ -63,7 +63,7 @@ class BasketList extends HTMLElement {
     connectedCallback() {
 
       this.itemList = this.shadowRoot.querySelector('.item-list');
-      window.addEventListener("message", this.manageListItem, false);
+      window.channel.addListener(this.manageListItem);
     }
 
     // gathering data from element attributes

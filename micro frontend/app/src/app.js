@@ -3,6 +3,7 @@ import "./appLoader";
 import "./appContainer";
 import "./appArea";
 import "./appContainer";
+import AllInclusiveBroadcaster from "./channel";
 
 window.broadcaster = new BroadcastChannel('Consumer');
 window.messageReceiver= new BroadcastChannel('Consumer');
@@ -20,21 +21,18 @@ class App extends HTMLElement {
     }
 
     connectedCallback() {
-        window.messageReceiver.onmessage = (ev) =>{ 
-            debugger;
-            console.log(ev); 
-        }
+        window.channel = new AllInclusiveBroadcaster();
+        //window.channel.addListener((d)=> console.log(d));
         this.innerHTML = `
         <app-layout>
         <div>
         <h1>Hello Magic list</h1>
-        <div><button id="test">TEST</button></div>
         </div><app-area>
         <app-container app="editable-list" /></app-area>
         <app-area>
         <app-container app="basket-list" /></app-area>
         </app-layout>`;
-        this.querySelector("#test").addEventListener("click", this.onButtonClick);
+        //this.querySelector("#test").addEventListener("click", this.onButtonClick);
         //this.loader = this.querySelector("app-loader");
         //this.render();
     }
@@ -43,7 +41,7 @@ class App extends HTMLElement {
         //this.loader.show = this.show+"";
     }
     disconnectedCallback() {
-        window.bc.close();
+        window.channel.close();
         console.log("bye bye");
         alert("bye");
         //window.removeEventListener("message", this.logMessage);
