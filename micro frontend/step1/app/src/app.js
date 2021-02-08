@@ -28,7 +28,7 @@ class App extends HTMLElement {
         <div>
         <h1>Hello Magic list</h1>
         </div><app-area>
-        <app-container app="editable-list" /></app-area>
+        <editable-list /></app-area>
         <app-area>
         <app-container app="basket-list" /></app-area>
         </app-layout>`;

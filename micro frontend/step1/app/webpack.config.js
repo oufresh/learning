@@ -20,6 +20,8 @@ module.exports = (/*env*/) => {
           use: ["style-loader", "css-loader"],
         },
       ],
+      externals: {
+      },
     },
     devServer: {
       port: 3000,
