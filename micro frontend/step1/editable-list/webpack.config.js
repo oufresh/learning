@@ -7,12 +7,16 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = env => {
   return {
-    
+    externals: {
+      lodash: {
+        root:'_' //global variable no import
+      }
+    },
     entry: "./src/index.js",
     output: {
       filename: 'bundle.js',
       path: __dirname + '/dist',
-      publicPath: ""
+
     },
     module: {
       rules: [

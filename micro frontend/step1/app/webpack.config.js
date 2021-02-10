@@ -20,8 +20,9 @@ module.exports = (/*env*/) => {
           use: ["style-loader", "css-loader"],
         },
       ],
-      externals: {
-      },
+    },
+    externals: {
+      lodash: "_"
     },
     devServer: {
       port: 3000,
@@ -77,7 +78,8 @@ module.exports = (/*env*/) => {
       },
     }),
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({ patterns: [{ from: "static", to: "." }] })
+    new CopyWebpackPlugin({ patterns: [{ from: "static", to: "." }, { from: "libs", to: "." }]
+   })
   ]
 
 };

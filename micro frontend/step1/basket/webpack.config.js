@@ -22,7 +22,9 @@ const customStyleLoader = {
 module.exports = env => {
   return {
     
-  
+    externals: {
+      lodash: "_"
+    },
     entry: "./src/index.js",
     output: {
       filename: 'bundle.js',
@@ -68,7 +70,6 @@ module.exports = env => {
         },
       }),
       new CleanWebpackPlugin(),
-    //new CopyWebpackPlugin({ patterns: [{ from: "static", to: "." }] }),
     //new webpack.EnvironmentPlugin(['STANDALONE']),
       new webpack.DefinePlugin({
         STANDALONE: env.STANDALONE

@@ -15,9 +15,8 @@ class App extends HTMLElement {
     }
 
     onButtonClick() {
-        window.broadcaster.postMessage("TEST");
-        //this.show = !this.show;
-        //this.render();
+        const result = _.partition([1, 2, 3, 4], n => n % 2);
+        console.log(result);
     }
 
     connectedCallback() {
@@ -27,12 +26,13 @@ class App extends HTMLElement {
         <app-layout>
         <div>
         <h1>Hello Magic list</h1>
+        <div><button id="test">TEST</button></div>
         </div><app-area>
         <editable-list /></app-area>
         <app-area>
         <app-container app="basket-list" /></app-area>
         </app-layout>`;
-        //this.querySelector("#test").addEventListener("click", this.onButtonClick);
+        this.querySelector("#test").addEventListener("click", this.onButtonClick);
         //this.loader = this.querySelector("app-loader");
         //this.render();
     }

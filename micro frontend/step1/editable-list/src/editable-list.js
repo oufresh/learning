@@ -63,7 +63,7 @@ class EditableList extends HTMLElement {
 
         this.itemList.appendChild(li);
         this.itemList.children[childrenLength].appendChild(button);
-        window.channel.postMessage({action: "add", value: textInput.value});
+        window.channel.postMessage({action: "add", value:  _.lowerCase(textInput.value)});
         this.handleRemoveItemListeners([button]);
 
         textInput.value = '';
@@ -113,7 +113,7 @@ class EditableList extends HTMLElement {
 
     removeListItem(e) {
       e.target.parentNode.remove();
-      window.channel.postMessage({action: "remove", value: e.target.parentNode.textContent.slice(0, -1)});
+      window.channel.postMessage({action: "remove", value: _.lowerCase((e.target.parentNode.textContent.slice(0, -1)))});
 
     }
     disconnectedCallback() {
