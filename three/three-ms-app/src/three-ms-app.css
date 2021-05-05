@@ -1,0 +1,13 @@
+.three-container {
+    width: 100%;
+  height: 100%;
+  background-color: rebeccapurple;
+  position: relative;
+  text-align: center;
+  }
+
+   #glCanvas {
+     position: absolute;
+     top: 0px;
+     left: 0px;
+   }
