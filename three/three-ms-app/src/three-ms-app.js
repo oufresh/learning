@@ -37,7 +37,7 @@ class ThreeMsApp extends HTMLElement {
     }
 
     resize() {
-      console.log("Resize done");
+  
       resize(this.threeContainer.clientWidth, this.threeContainer.clientHeight);
     }
 
