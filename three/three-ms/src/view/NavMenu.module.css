@@ -1,0 +1,5 @@
+.NavMenu {
+    display: grid;
+    flex: 0 0 300px;
+    background-color: #383d47;
+}
