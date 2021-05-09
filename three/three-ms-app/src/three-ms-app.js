@@ -71,4 +71,4 @@ class ThreeMsApp extends HTMLElement {
 
   // let the browser know about the custom element
   customElements.define('three-ms-app', ThreeMsApp);
-  console.log("element basket-list registered");
+  console.log("element three-ms-app registered");
