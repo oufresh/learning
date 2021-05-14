@@ -5,7 +5,8 @@ let renderer = null;
 let scene = null;
 let cube = null;
 let camera = null;
-
+let playFlag = true;
+let timefactor = 0.001;
 ///
 function setCanvasSize(width, height) {
   canvas.setAttribute("height", height + "");
@@ -53,7 +54,8 @@ export function render(time) {
 
   renderer.render(scene, camera);
 
-  requestAnimationFrame(render);
+  if(playFlag)
+    requestAnimationFrame(render);
 }
 
 export function resize(width, height) {
@@ -72,5 +74,17 @@ export function resize(width, height) {
     console.log("Resize done ...");
   }
 }
+
+export function playPause() {
+  const oldP = playFlag;
+  playFlag = !playFlag;
+  if(playFlag == true && oldP ==false)
+  render();
+}
+
+export function isPlaying(){
+  return playFlag;
+}
+
 
 export function dispose() {}

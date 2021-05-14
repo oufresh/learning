@@ -1,13 +1,69 @@
-.three-container {
-    width: 100%;
+ * {
+   box-sizing: border-box;
+ }
+ 
+ .three-container {
+  width: 100%;
   height: 100%;
   background-color: rebeccapurple;
   position: relative;
   text-align: center;
-  }
+}
 
-   #glCanvas {
-     position: absolute;
-     top: 0px;
-     left: 0px;
-   }
+#glCanvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.commands {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 30px;
+  opacity: 0;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.fade-in:hover {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.play-pause {
+  margin: 0px;
+  color: gray;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 1px;
+  background-color: transparent;
+  height: 26px;
+  width: 26px;
+}
+
+.play-pause svg polygon {
+  fill: gray;
+  stroke-width: 0;
+}
+
+.play-pause svg polygon:hover {
+  fill: lightgrey;
+}
+
+.play-pause:hover {
+  cursor: pointer;
+  background-color: transparent;
+  color: lightgrey;
+}
+.play-pause:focus,
+.play-pause:active .play-pause:focus:active {
+  outline: none;
+  box-shadow: none;
+}
+
+
