@@ -34,7 +34,7 @@ class ThreeMsApp extends HTMLElement {
     this.height = 0;
 
     // creating the inner HTML of the editable list element
-    this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas><div class="commands fade-in"div><div class="command"><input type="range" min="1" max="100" value="50" class="slider speed"></div><div class="command"><button class="play-pause"></div></div>
+    this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas><div class="commands fade-in"div><div class="command"><input type="range" min="1" max="100" value="1" class="slider speed"></div><div class="command"><button class="play-pause"></div></div>
         </button></div>`;
 
     // binding methods

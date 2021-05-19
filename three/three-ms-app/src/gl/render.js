@@ -6,7 +6,7 @@ let scene = null;
 let cube = null;
 let camera = null;
 let playFlag = true;
-let timefactor = 0.001;
+let timefactor = 0.0001;
 let speed = 1;
 ///
 function setCanvasSize(width, height) {
