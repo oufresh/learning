@@ -12,18 +12,8 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
  * 1. usare un loader raw e inserire il css creando il nodo style nel web component come fatto qui
  * 2. prefixare il css e le classi per non andare in conflitto con quello dell'app principale e caricarlo con style loader nle dom principale (prefix css-loader)
  * 3. usare un tag style con link e caricare il css separatamente
+ * 4. usare lazy load del css di webpack
  * 
- * document.querySelector("basket-list").shadowRoot.firstElementChild
- *document.querySelector("three-ms-app").shadowRoot.querySelector("style")
-/*
-const customStyleLoader = {
-  loader: 'style-loader',
-  options: {
-    insert: function (linkTag) {
-      const parent = document.querySelector('#root').shadowRoot
-      parent.appendChild(linkTag)
-    },
-  },
 }*/
 module.exports = env => {
   return {
@@ -41,7 +31,12 @@ module.exports = env => {
       rules: [
         {
           test: /\.css$/i,
-          use: ["raw-loader"]
+          use: [{ loader: 'style-loader', options: { injectType: 'lazyStyleTag', insert: function (linkTag) {
+              var parent = document.querySelector('three-ms-app').shadowRoot;
+              parent.appendChild(linkTag);
+            }
+            }},
+          'css-loader']
         },
       ]
     },

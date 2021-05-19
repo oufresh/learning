@@ -7,6 +7,7 @@ let cube = null;
 let camera = null;
 let playFlag = true;
 let timefactor = 0.001;
+let speed = 1;
 ///
 function setCanvasSize(width, height) {
   canvas.setAttribute("height", height + "");
@@ -47,7 +48,7 @@ export function init(c, width, height) {
 }
 
 export function render(time) {
-  time *= 0.001; // convert time to seconds
+  time *= (timefactor * speed); // convert time to seconds
 
   cube.rotation.x = time;
   cube.rotation.y = time;
@@ -84,6 +85,10 @@ export function playPause() {
 
 export function isPlaying(){
   return playFlag;
+}
+
+export function changeSpeed(s) {
+  speed = s;
 }
 
 

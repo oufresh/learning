@@ -23,12 +23,15 @@
   right: 0px;
   height: 30px;
   opacity: 0;
-  border: 1px solid lightgray;
+  /*border: 1px solid lightgray;*/
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
+.commands .command{
+  padding: 0px 10px;
+}
 .fade-in:hover {
   opacity: 1;
   transition: opacity 0.3s;
@@ -46,12 +49,12 @@
   width: 26px;
 }
 
-.play-pause svg polygon {
+.play-pause svg g.pp {
   fill: gray;
   stroke-width: 0;
 }
 
-.play-pause svg polygon:hover {
+.play-pause svg g.pp:hover {
   fill: lightgrey;
 }
 
@@ -64,6 +67,37 @@
 .play-pause:active .play-pause:focus:active {
   outline: none;
   box-shadow: none;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 10px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: gray;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: gray;
+  cursor: pointer;
 }
 
 
