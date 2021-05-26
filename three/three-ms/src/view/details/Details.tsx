@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./NavMenu.module.css";
+import styles from "./Details.module.css";
 
-export const NavMenu = () => {
+export const Details = () => {
   return <aside className={styles.NavMenu} />;
 };

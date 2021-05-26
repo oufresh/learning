@@ -1,0 +1,29 @@
+.ToolbarButton {
+  margin: 0px;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 4px;
+  background-color: transparent;
+}
+
+.ToolbarButton:hover {
+  cursor: pointer;
+  background-color: transparent;
+  /*color: lightgrey;*/
+}
+.ToolbarButton:focus,
+.ToolbarButton:active,
+.ToolbarButton:focus:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.play-pause svg g.pp {
+  fill: gray;
+  stroke-width: 0;
+}
+
+.play-pause svg g.pp:hover {
+  fill: lightgrey;
+}

@@ -1,6 +1,8 @@
-import React, { /*useState, useEffect, useRef */ } from "react";
+import React from "react";
 import style from "./AppContent.module.css";
 import { useLoad, LoadEnum } from "../hooks/load";
+import { Loader } from "./widgets/Loader";
+import { Error } from "./widgets/Error";
 
 
 const AppContent = () => {
@@ -11,9 +13,9 @@ const AppContent = () => {
         <div className={style.AppSpace}><three-ms-app /></div>;
       </div>
     );
-  } else if (load === LoadEnum.ERROR) {
-    return <p>Error loading</p>;
-  } else return <div className={style.AppContent}></div>;
+  } else return <div className={style.AppContent}>
+    {load === LoadEnum.ERROR ? <Error message={"Error loading ..."} /> : <Loader />}
+  </div>;
 };
 
 export default React.memo(AppContent);
