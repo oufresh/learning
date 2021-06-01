@@ -15,10 +15,10 @@ class ThreeMsApp extends HTMLElement {
 
     // attaches shadow tree and returns shadow root reference
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow
-    const shadow = this.attachShadow({ mode: "open" });
-
+    this.shadow = this.attachShadow({ mode: "open" });
     //lazy load css
-    style.use();
+    
+    //style.use();
 
     // creating a container for the editable-list component
     this.threeContainer = document.createElement("div");
@@ -33,9 +33,7 @@ class ThreeMsApp extends HTMLElement {
     this.width = 0;
     this.height = 0;
 
-    // creating the inner HTML of the editable list element
-    this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas><div class="commands fade-in"div><div class="command"><input type="range" min="1" max="100" value="1" class="slider speed"></div><div class="command"><button class="play-pause"></div></div>
-        </button></div>`;
+
 
     // binding methods
     this.resize = this.resize.bind(this);
@@ -44,9 +42,10 @@ class ThreeMsApp extends HTMLElement {
     this.playPause = this.threeContainer.querySelector(".play-pause");
     this.speedSlider = this.threeContainer.querySelector(".speed");
     this.onSpeed= this.onSpeed.bind(this);
-
-    // appending the container to the shadow DOM
-    shadow.appendChild(this.threeContainer);
+    this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas>`/*<div class="commands fade-in"div><div class="command"><input type="range" min="1" max="100" value="1" class="slider speed"></div><div class="command"><button class="play-pause"></div></div>
+    </button></div>`*/;
+    
+    
   }
 
   onSpeed(e) {
@@ -68,17 +67,29 @@ class ThreeMsApp extends HTMLElement {
 
   // fires after the element has been attached to the DOM
   connectedCallback() {
+// appending the container to the shadow DOM
+this.shadow.appendChild(this.threeContainer);
+    console.log("style use");
+    style.use();
+
+        // creating the inner HTML of the editable list element
+        this.glCanvas = this.threeContainer.querySelector("#glCanvas");
+    //this.playPause = this.threeContainer.querySelector(".play-pause");
+    //this.speedSlider = this.threeContainer.querySelector(".speed");
+      //  this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas><div class="commands fade-in"div><div class="command"><input type="range" min="1" max="100" value="1" class="slider speed"></div><div class="command"><button class="play-pause"></div></div>
+        //</button></div>`;
+    
     listener = debounce(this.resize);
     window.addEventListener("resize", listener);
     
-    this.playPause.addEventListener("click", this.onPlayPause);
-    this.speedSlider.addEventListener("input", this.onSpeed);
+    //this.playPause.addEventListener("click", this.onPlayPause);
+    //this.speedSlider.addEventListener("input", this.onSpeed);
     init(
       this.glCanvas,
       this.threeContainer.clientWidth,
       this.threeContainer.clientHeight
     );
-    this.playPause.innerHTML = pausehtml;
+    //this.playPause.innerHTML = pausehtml;
   }
 
   static get observedAttributes() {
