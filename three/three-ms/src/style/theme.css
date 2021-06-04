@@ -88,3 +88,8 @@
     transform: rotate(360deg);
   }
 }
+
+.footer {
+  background-color: #3498db;
+  font-size: 2vmin;
+}

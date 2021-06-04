@@ -1,8 +1,8 @@
- * {
-   box-sizing: border-box;
- }
- 
- .three-container {
+* {
+  box-sizing: border-box;
+}
+
+.three-container {
   width: 100%;
   height: 100%;
   background-color: rebeccapurple;
@@ -29,8 +29,11 @@
   justify-content: flex-end;
 }
 
-.commands .command{
+.commands .command {
   padding: 0px 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .fade-in:hover {
   opacity: 1;
@@ -73,11 +76,13 @@
   -webkit-appearance: none;
   width: 100px;
   height: 10px;
+  margin: 0px;
+  padding: 0px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 }
 
 .slider:hover {
@@ -99,5 +104,3 @@
   background: gray;
   cursor: pointer;
 }
-
-

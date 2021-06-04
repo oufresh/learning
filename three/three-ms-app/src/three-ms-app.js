@@ -38,14 +38,11 @@ class ThreeMsApp extends HTMLElement {
     // binding methods
     this.resize = this.resize.bind(this);
     this.onPlayPause = this.onPlayPause.bind(this);
-    this.glCanvas = this.threeContainer.querySelector("#glCanvas");
-    this.playPause = this.threeContainer.querySelector(".play-pause");
-    this.speedSlider = this.threeContainer.querySelector(".speed");
     this.onSpeed= this.onSpeed.bind(this);
-    this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas>`/*<div class="commands fade-in"div><div class="command"><input type="range" min="1" max="100" value="1" class="slider speed"></div><div class="command"><button class="play-pause"></div></div>
-    </button></div>`*/;
-    
-    
+    this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas><div class="commands fade-in"div>
+    <div class="command"><input type="range" min="1" max="100" value="1" class="slider speed"></div>
+    <div class="command"><button class="play-pause"></div>
+    </div>`;
   }
 
   onSpeed(e) {
@@ -74,16 +71,15 @@ this.shadow.appendChild(this.threeContainer);
 
         // creating the inner HTML of the editable list element
         this.glCanvas = this.threeContainer.querySelector("#glCanvas");
-    //this.playPause = this.threeContainer.querySelector(".play-pause");
-    //this.speedSlider = this.threeContainer.querySelector(".speed");
-      //  this.threeContainer.innerHTML = `<canvas id="glCanvas"></canvas><div class="commands fade-in"div><div class="command"><input type="range" min="1" max="100" value="1" class="slider speed"></div><div class="command"><button class="play-pause"></div></div>
-        //</button></div>`;
+    this.playPause = this.threeContainer.querySelector(".play-pause");
+    this.playPause.innerHTML = pausehtml;
+    this.speedSlider = this.threeContainer.querySelector(".speed");
     
     listener = debounce(this.resize);
     window.addEventListener("resize", listener);
     
-    //this.playPause.addEventListener("click", this.onPlayPause);
-    //this.speedSlider.addEventListener("input", this.onSpeed);
+    this.playPause.addEventListener("click", this.onPlayPause);
+    this.speedSlider.addEventListener("input", this.onSpeed);
     init(
       this.glCanvas,
       this.threeContainer.clientWidth,
